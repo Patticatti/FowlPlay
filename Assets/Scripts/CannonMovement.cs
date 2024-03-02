@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CannonMovement : MonoBehaviour
 {
-    public float moveDistance = 3f; // Distance the object will move
+    public float moveDistance = 38f; // Distance the object will move
     public float moveSpeed = 1f; // Speed of the movement
     private Rigidbody rb;
 
@@ -18,7 +18,7 @@ public class CannonMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
-        endPos = transform.position + Vector3.forward * moveDistance;
+        endPos = new Vector3(transform.position.x, transform.position.y,20f);
         targetPos = endPos;
     }
 
@@ -37,6 +37,6 @@ public class CannonMovement : MonoBehaviour
         }
 
         // Move the object towards the target position
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetPos, timer);
     }
 }
